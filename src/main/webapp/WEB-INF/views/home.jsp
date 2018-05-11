@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -39,19 +40,20 @@
 	</nav>
 	<div class="container">
 		<div class="col-md-4">
-			<form class="form-horizontal" action="/action_page.php">
+			<form:form class="form-horizontal" modelAttribute="todo_object" method="post" action="home">
 				<div class="form-group">
 					<label for="email">Task:</label>
 					<div>
-						<input type="email" class="form-control" id="task"
-							placeholder="Enter Task">
+						<form:input path="task" class="form-control" id="task"
+							placeholder="Enter Task" />
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="pwd">Description:</label>
 					<div>
-						<textarea class="form-control" id="desc"
-							placeholder="Enter Description"></textarea>
+						<form:input path="description" class="form-control" id="desc"
+							placeholder="Enter Description" />
+							<form:hidden path="status"  />
 					</div>
 				</div>
 
@@ -60,7 +62,7 @@
 						<button type="submit" class="btn btn-default">Submit</button>
 					</div>
 				</div>
-			</form>
+			</form:form>
 		</div>
 		<div class="col-md-8">
 
@@ -71,44 +73,19 @@
 					<th>Task</th>
 					<th>Description</th>
 					<th>Status</th>
-
+					<th colspan="2">Operations</th>
 				</tr>
+				<c:forEach items="${tasks}" var="task">
+				
 				<tr>
-					<th>1</th>
-					<th>Abc</th>
-					<th>To Do</th>
-					<th>Adchjsd</th>
+				    <td>${task.id}</td>
+					<td>${task.task}</td>
+					<td>${task.description}</td>
+					<td>${task.status}</td>
+					<td><a href=""  class="btn btn-primary" >Done</a></td>
+					<td><a href=""  class="btn btn-danger" >Delete</a></td>
 				</tr>
-				<tr>
-					<th>1</th>
-					<th>Abc</th>
-					<th>To Do</th>
-					<th>Adchjsd</th>
-				</tr>
-				<tr>
-					<th>1</th>
-					<th>Abc</th>
-					<th>To Do</th>
-					<th>Adchjsd</th>
-				</tr>
-				<tr>
-					<th>1</th>
-					<th>Abc</th>
-					<th>To Do</th>
-					<th>Adchjsd</th>
-				</tr>
-				<tr>
-					<th>1</th>
-					<th>Abc</th>
-					<th>To Do</th>
-					<th>Adchjsd</th>
-				</tr>
-				<tr>
-					<th>1</th>
-					<th>Abc</th>
-					<th>To Do</th>
-					<th>Adchjsd</th>
-				</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</div>
