@@ -6,12 +6,14 @@
 <head>
 <title>Home</title>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css">
+
+<c:url value="/bootstrap/css/bootstrap.min.css" var="bootstrap_css" ></c:url>
+<link rel="stylesheet"	href="${bootstrap_css}">
 
 <!-- Optional theme -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-theme.min.css">
+<c:url value="/bootstrap/css/bootstrap-theme.min.css" var="bootstrap_theme_css" />
+<link rel="stylesheet"	href="${bootstrap_theme_css}">
+
 </head>
 <body>
 
@@ -82,8 +84,12 @@
 					<td>${task.task}</td>
 					<td>${task.description}</td>
 					<td>${task.status}</td>
-					<td><a href=""  class="btn btn-primary" >Done</a></td>
-					<td><a href=""  class="btn btn-danger" >Delete</a></td>
+					<c:url value="/home/delete/${task.id}" var="del_task" />
+					<c:url value="/home/done/${task.id}" var="update_task" />
+					<td><a href="${update_task}"  class="btn btn-primary" >Done</a></td>
+					<td><a href="${del_task}"  class="btn btn-danger" >Delete</a></td>
+					<c:remove var="del_task"/>
+					<c:remove var="update_task" />
 				</tr>
 				</c:forEach>
 			</table>
@@ -91,11 +97,13 @@
 	</div>
 	<!-- Scripts -->
 	<!-- Latest compiled and minified JavaScript -->
+	<c:url value="/bootstrap/js/jquery-3.3.1.min.js" var="jquery" />
 	<script
-		src="${pageContext.request.contextPath}/bootstrap/js/jquery-3.3.1.min.js"
+		src="${jquery}"
 		type="text/javascript"></script>
+	<c:url value="/bootstrap/js/bootstrap.min.js" var="bootstrap_js" />
 	<script
-		src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"
+		src="${bootstrap_js}"
 		type="text/javascript"></script>
 </body>
 </html>
