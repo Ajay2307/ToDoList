@@ -35,27 +35,4 @@ public class ToDoServiceImpl implements ToDoService {
 		return this.todo_dao.getTodo();
 	}
 
-
-	@Override
-	public Integer deleteTask(int task_id) {
-		// TODO Auto-generated method stub
-		return this.todo_dao.deleteTask(task_id);
-	}
-
-
-	@Override
-	public Integer updateTask(int task_id) {
-		// TODO Auto-generated method stub
-		ToDo task = this.todo_dao.getTask(task_id);
-		task.setStatus("Done");
-		return this.todo_dao.updateTask(task);
-	}
-
-
-	@Override
-	public ToDo getTask(int task) {
-		// TODO Auto-generated method stub
-		return this.todo_dao.getTask(task);
-	}
-
 }

@@ -16,14 +16,15 @@ import com.rk.todo.dto.ToDo;
 @Repository
 public class ToDoDAOImpl implements ToDoDAO {
 
+
 	private static final Logger logger = LoggerFactory.getLogger(ToDoDAOImpl.class);
 
+	
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	/**
-	 * @param sessionFactory
-	 *            the sessionFactory to set
+	 * @param sessionFactory the sessionFactory to set
 	 */
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -36,11 +37,11 @@ public class ToDoDAOImpl implements ToDoDAO {
 		int result = 0;
 		try {
 			if (todo != null) {
-				result = (Integer) session.save(todo);
+				result = (Integer)session.save(todo);
 				tx.commit();
 				session.close();
 			}
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("Error in saving the task :");
@@ -55,90 +56,21 @@ public class ToDoDAOImpl implements ToDoDAO {
 		List<ToDo> todos = null;
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
-
+		
 		try {
-			todos = session.createCriteria(ToDo.class).list();
-			tx.commit();
-			session.close();
-
+				todos = session.createCriteria(ToDo.class).list();
+				tx.commit();
+				session.close();
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("Error in saving the task :");
 			tx.rollback();
 			session.close();
 		}
-
+		
 		return todos;
-	}
-
-	@Override
-	public int deleteTask(int task_id) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		int result = 0;
-		try {
-			if (task_id != 0) {
-				ToDo task = session.get(ToDo.class, task_id);
-				if (task != null) {
-					session.delete(task);
-					result = 1;
-				}
-				tx.commit();
-				session.close();
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("Error in deletion the task :");
-			tx.rollback();
-			session.close();
-			result = 0;
-		}
-		return result;
-	}
-
-	@Override
-	public int updateTask(ToDo todo) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		int result = 0;
-		try {
-			if (todo != null) {
-				session.update(todo);
-				tx.commit();
-				session.close();
-				result = 1;
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("Error in update the task :");
-			tx.rollback();
-			session.close();
-			result = 0;
-		}
-		return result;
-	}
-
-	@Override
-	public ToDo getTask(int task_id) {
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
-		ToDo task = null;
-		try {
-			if (task_id != 0) {
-				task = session.get(ToDo.class, task_id);
-				tx.commit();
-				session.close();
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("Error in getting the task :");
-			tx.rollback();
-			session.close();
-		}
-		return task;
 	}
 
 }

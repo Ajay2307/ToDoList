@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,20 +58,6 @@ public class HomeController {
 	@RequestMapping(value = "/home", method = RequestMethod.POST )
 	public String insertTask(Model model, @ModelAttribute(name = "todo_object")ToDo todo) {
 		int result = todo_service.saveTask(todo);
-		logger.info("Task id : "+ result);
-		return "redirect:/home";
-	}
-	
-	@RequestMapping(value = "/home/delete/{task_id}", method = RequestMethod.GET )
-	public String deleteTask(Model model, @PathVariable(name="task_id", required = true)int task_id) {
-		int result = todo_service.deleteTask(task_id);
-		logger.info("Task id : "+ result);
-		return "redirect:/home";
-	}
-	
-	@RequestMapping(value = "/home/done/{task_id}", method = RequestMethod.GET )
-	public String doneTask(Model model, @PathVariable(name="task_id", required = true)int task_id) {
-		int result = todo_service.updateTask(task_id);
 		logger.info("Task id : "+ result);
 		return "redirect:/home";
 	}
