@@ -72,5 +72,75 @@ public class ToDoDAOImpl implements ToDoDAO {
 		
 		return todos;
 	}
+	
+	@Override
+	public int deleteTask(int task_id) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		int result = 0;
+		try {
+			if (task_id != 0) {
+				ToDo task = session.get(ToDo.class, task_id);
+				if (task != null) {
+					session.delete(task);
+					result = 1;
+				}
+				tx.commit();
+				session.close();
+			}
+
+ 		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Error in deletion the task :");
+			tx.rollback();
+			session.close();
+			result = 0;
+		}
+		return result;
+	}
+
+ 	@Override
+	public int updateTask(ToDo todo) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		int result = 0;
+		try {
+			if (todo != null) {
+				session.update(todo);
+				tx.commit();
+				session.close();
+				result = 1;
+			}
+
+ 		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Error in update the task :");
+			tx.rollback();
+			session.close();
+			result = 0;
+		}
+		return result;
+	}
+
+ 	@Override
+	public ToDo getTask(int task_id) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		ToDo task = null;
+		try {
+			if (task_id != 0) {
+				task = session.get(ToDo.class, task_id);
+				tx.commit();
+				session.close();
+			}
+
+ 		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("Error in getting the task :");
+			tx.rollback();
+			session.close();
+		}
+		return task;
+	}
 
 }

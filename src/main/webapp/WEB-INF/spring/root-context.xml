@@ -8,10 +8,10 @@
 	<!-- Configuration of the data source -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.postgresql.Driver"></property>
-		<property name="url" value="jdbc:postgresql://ec2-54-83-59-239.compute-1.amazonaws.com:5432/d95b4pl1fc0re0"></property>
-		<property name="username" value="xcykmxoazivkoa"></property>
-		<property name="password" value="9085b49ac03568bd595dec968f429a482f0b3048d0407ea35c7f6fb7378a45df"></property>
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/todo"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="redhat@123"></property>
 	</bean>		
 	
 	<!-- Session factory for connection with databases -->
@@ -22,7 +22,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>

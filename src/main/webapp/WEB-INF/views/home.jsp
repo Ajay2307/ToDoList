@@ -40,7 +40,8 @@
 	</nav>
 	<div class="container">
 		<div class="col-md-4">
-			<form:form class="form-horizontal" modelAttribute="todo_object" method="post" action="home">
+			<form:form class="form-horizontal" modelAttribute="todo_object"
+				method="post" action="home">
 				<div class="form-group">
 					<label for="email">Task:</label>
 					<div>
@@ -53,7 +54,7 @@
 					<div>
 						<form:input path="description" class="form-control" id="desc"
 							placeholder="Enter Description" />
-							<form:hidden path="status"  />
+						<form:hidden path="status" />
 					</div>
 				</div>
 
@@ -76,15 +77,19 @@
 					<th colspan="2">Operations</th>
 				</tr>
 				<c:forEach items="${tasks}" var="task">
-				
-				<tr>
-				    <td>${task.id}</td>
-					<td>${task.task}</td>
-					<td>${task.description}</td>
-					<td>${task.status}</td>
-					<td><a href=""  class="btn btn-primary" >Done</a></td>
-					<td><a href=""  class="btn btn-danger" >Delete</a></td>
-				</tr>
+
+					<tr>
+						<td>${task.id}</td>
+						<td>${task.task}</td>
+						<td>${task.description}</td>
+						<td>${task.status}</td>
+						<c:url value="/home/delete/${task.id}" var="del_task" />
+						<c:url value="/home/done/${task.id}" var="update_task" />
+						<td><a href="${update_task}" class="btn btn-primary">Done</a></td>
+						<td><a href="${del_task}" class="btn btn-danger">Delete</a></td>
+						<c:remove var="del_task" />
+						<c:remove var="update_task" />
+					</tr>
 				</c:forEach>
 			</table>
 		</div>
