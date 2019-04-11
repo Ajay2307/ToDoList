@@ -41,7 +41,7 @@
 	<div class="container">
 		<div class="col-md-4">
 			<form:form class="form-horizontal" modelAttribute="todo_object"
-				method="post" action="home">
+				method="post" action="${pageContext.request.contextPath}/home">
 				<div class="form-group">
 					<label for="email">Task:</label>
 					<div>

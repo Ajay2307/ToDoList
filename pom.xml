@@ -245,6 +245,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 	<build>
     <finalName>todo</finalName>
         <plugins>

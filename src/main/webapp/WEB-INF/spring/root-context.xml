@@ -6,14 +6,23 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- Configuration of the data source -->
-	<bean id="dataSource"
+	<!-- <bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/todo"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="redhat@123"></property>
-	</bean>		
+		<property name="url" value="jdbc:mysql://172.30.109.163:3306/todo"></property>
+		<property name="username" value="devops"></property>
+		<property name="password" value="redhat123"></property>
+	</bean>		 -->
 	
+
+	<!-- JNDI datasource configuration -->
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="java:comp/env/jdbc/mySQL"/>
+		<property name="lookupOnStartup" value="false"/>
+		<property name="cache" value="true"/>
+		<property name="proxyInterface" value="javax.sql.DataSource"/>
+	</bean>
+
 	<!-- Session factory for connection with databases -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
