@@ -35,12 +35,17 @@
 <!-- adding the datasource -->
     <dataSource id="DefaultDataSource" jndiName="jdbc/mySQL">
         <jdbcDriver libraryRef="MySQLLib"/>
-        <properties databaseName="${evn.DB_NAME}" 
+        <!-- <properties databaseName="${evn.DB_NAME}" 
                     serverName="${env.DB_SERVER}" 
                     portNumber="${env.DB_PORT}" 
                     user="${env.DB_USER}" 
                     password="${env.DB_PASS}" 
-                    currentSchema="${evn.DB_NAME}" />
+                    currentSchema="${evn.DB_NAME}" /> -->
+                <properties databaseName="todo" 
+                    serverName="172.30.109.163" 
+                    portNumber="3306" 
+                    user="devops" 
+                    password="redhat123" />   
     </dataSource>
 
     <library id="MySQLLib">
