@@ -1,10 +1,13 @@
-FROM tomcat:8
+FROM maven:3.6.0-jdk-8
 
-USER tomcat
+COPY . /usr/app-root/src/
 
-WORKDIR /usr/local/tomcat
+WORKDIR /usr/app-root/src/
 
-COPY target/todo.war /usr/local/tomcat/webapps/
+RUN mvn clean package -DskipTests
 
 EXPOSE 8080
 
+COPY target/todo.war /usr/app-root/src/
+
+ENTRYPOINT ["java","-jar","target/todo.war"]
