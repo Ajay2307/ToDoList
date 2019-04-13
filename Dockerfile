@@ -8,6 +8,4 @@ RUN mvn clean package -DskipTests
 
 EXPOSE 8080
 
-COPY target/todo.war /usr/app-root/src/
-
 ENTRYPOINT ["java","-jar","target/todo.war"]
