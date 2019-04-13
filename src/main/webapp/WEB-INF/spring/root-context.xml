@@ -9,9 +9,9 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/todo"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value="redhat@123"></property>
+		<property name="url" value="jdbc:mysql://172.30.188.193:3306/todo"></property>
+		t:<property name="username" value="devops"></property>
+		<property name="password" value="redhat"></property>
 	</bean>		
 	
 	<!-- Session factory for connection with databases -->
