@@ -9,7 +9,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://172.30.188.193:3306/todo"></property>
+		<property name="url" value="jdbc:mysql://172.30.234.17:3306/todo?autoReconnect=true"></property>
 		t:<property name="username" value="devops"></property>
 		<property name="password" value="redhat"></property>
 	</bean>		
