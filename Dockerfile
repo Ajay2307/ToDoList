@@ -18,7 +18,7 @@ RUN mkdir -p /usr/local/tomcat/webapps/manager/text/
 
 RUN chmod -R 777 /usr/local/tomcat/webapps/manager/text/
 
-RUN sh /usr/local/tomcat/bin/startup.sh
+#RUN sh /usr/local/tomcat/bin/startup.sh
 
 EXPOSE 8080
 
